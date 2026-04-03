@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hai Kamu 💖</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial;
+            color: white;
+        }
+
+        .box {
+            text-align: center;
+            background: rgba(0,0,0,0.3);
+            padding: 40px;
+            border-radius: 20px;
+        }
+
+        button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 15px;
+            background: #ff2e63;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h1>Aku punya sesuatu buat kamu 💖</h1>
+    <button onclick="go()">Buka 💕</button>
+</div>
+
+<script>
+function go() {
+    document.body.style.opacity = "0";
+    setTimeout(() => {
+        window.location.href = "love.html";
+    }, 700);
+}
+</script>
+
+</body>
+</html>

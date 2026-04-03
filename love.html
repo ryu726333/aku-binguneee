@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Untuk Indah 💖</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins&display=swap" rel="stylesheet">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: radial-gradient(circle, #000000, #2b0a12);
+            color: #ff4b5c;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            overflow: auto; /* 🔥 FIX SCROLL */
+        }
+
+        h1 {
+            margin-top: 30px;
+            font-family: 'Great Vibes', cursive;
+            font-size: 42px;
+            color: #ff7aa2;
+            text-shadow: 0 0 10px pink;
+        }
+
+        h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 32px;
+            color: #ff7aa2;
+        }
+
+        #text {
+            width: 70%;
+            margin: auto;
+            white-space: pre-line;
+            font-size: 18px;
+            border-right: 2px solid #ff4b5c;
+            padding: 20px;
+            min-height: 200px;
+        }
+
+        #slideshow {
+            width: 220px;
+            border-radius: 20px;
+            margin-top: 10px;
+            box-shadow: 0 0 20px pink;
+            transition: 1s;
+        }
+
+        button {
+            padding: 12px 25px;
+            margin: 10px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        #yes {
+            background: #ff4b5c;
+            color: white;
+        }
+
+        #no {
+            background: gray;
+            color: white;
+            position: absolute;
+        }
+
+        .heart {
+            position: absolute;
+            color: red;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { top: -10%; opacity: 1; }
+            100% { top: 110%; opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<h1>💖 Untuk Indah 💖</h1>
+
+<img id="slideshow" src="foto1.jpeg">
+
+<button onclick="start()">Mulai 💕</button>
+
+<div id="text"></div>
+
+<div id="choice" style="display:none;">
+    <h2>Indah... kamu sayang aku juga kan? 😏💖</h2>
+    <button id="yes" onclick="yes()">Sayang banget 💖</button>
+    <button id="no" onmouseover="kabur()">Hmm... 😝</button>
+</div>
+
+<audio id="musik" loop>
+    <source src="indah.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const message = `Hai Sayangku...
+
+Makasih ya,
+udah jadi bagian dari hidup aku.
+
+Mungkin ga banyak yang bisa aku bilang,
+karena cerita kita masih panjang dan belum selesai.
+
+Aku harap kamu di pondok bisa jaga diri,
+jaga makan, jaga tidur,
+dan jangan terlalu capek ya sayang.
+
+Jangan overthinking juga ya,
+aku di sini bakal tetap jaga perasaan ini buat kamu.
+
+Dan kamu tau gak?
+Aku punya banyak rencana nanti...
+pas kamu udah pulang 😏
+
+Baik-baik ya di sana,
+jangan simpan dendam ke siapa pun,
+cukup jadi orang baik seperti yang aku kenal.
+
+Aku bakal nunggu kamu...
+sampai kamu pulang.
+
+maaf ya kalau effort ku kurang 
+buat kamu tapi aku aakan usahakan ya sayang
+
+Jangan bosen sama aku ya 💖
+
+Karena aku...
+sayang banget sama kamu, Indah 💘`;
+
+let i = 0;
+
+function ketik() {
+    if (i < message.length) {
+        document.getElementById("text").innerHTML += message.charAt(i);
+        i++;
+        setTimeout(ketik, 30);
+    } else {
+        document.getElementById("choice").style.display = "block";
+    }
+}
+
+function start() {
+    document.querySelector("button").style.display = "none";
+
+    let audio = document.getElementById("musik");
+    audio.volume = 0.3;
+    audio.play();
+
+    ketik();
+
+    // 🔥 AUTO SCROLL CINEMATIC
+    setInterval(autoScroll, 50);
+}
+
+// 🔥 AUTO SCROLL
+function autoScroll() {
+    window.scrollBy(0, 0.5);
+}
+
+// 📸 SLIDESHOW
+const photos = [
+    "foto1.jpeg",
+    "foto2.jpeg",
+    "foto3.jpeg",
+    "foto4.jpeg",
+    "foto5.jpeg"
+];
+
+let indexFoto = 0;
+
+function slideFoto() {
+    indexFoto++;
+    if (indexFoto >= photos.length) {
+        indexFoto = 0;
+    }
+
+    document.getElementById("slideshow").src = photos[indexFoto];
+}
+
+setInterval(slideFoto, 2000);
+
+function kabur() {
+    const btn = document.getElementById("no");
+    btn.style.top = Math.random() * 80 + "%";
+    btn.style.left = Math.random() * 80 + "%";
+}
+
+function yes() {
+    document.body.innerHTML = `
+        <h1 style="font-family:'Great Vibes',cursive; color:#ff7aa2; margin-top:100px; text-shadow:0 0 20px pink;">
+        💖 I LOVE YOU INDAH 💖<br><br>
+        Makasih udah selalu ada buat aku 💘
+        </h1>
+    `;
+}
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 5000);
+}
+
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
